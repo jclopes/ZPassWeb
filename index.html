@@ -2,7 +2,47 @@
 <head>
   <title>ZPassWeb</title>
   <script type="text/javascript" src="zpass.js"></script>
+  <script>
+function show_pass()
+{
+    var elem = document.getElementById('pass');
+    elem.className = "vis";
+    elem.select();
+}
+
+function gen_pass() {
+    var salt = document.getElementById('salt');
+    var keyword = document.getElementById('keyword');
+    var uri = document.getElementById('uri');
+    var genPass = hash2pass(salt.value, keyword.value, uri.value);
+    var out = document.getElementById('pass');
+    out.className = "inv";
+    out.value = genPass;
+    out.select();
+    info = document.getElementById('info');
+    info.innerHTML="You may copy to your clipboard: [Ctrl+C] or [CMD+C]";
+}
+</script>
+<style>
+    .inv::selection {
+        color: #000;
+        background: #000;
+    }
+    .inv {
+        color: #000;
+        background: #000;
+    }
+    .vis::selection {
+        color: #000;
+        background: #FFF;
+    }
+    .vis {
+        color: #000;
+        background: #FFF;
+    }
+</style>
 </head>
+
 <body>
   <p>
   Salt: <input type="text" id="salt" />
@@ -10,11 +50,13 @@
   URI: <input type="text" id="uri" />
   </p>
   <p>
-  <button id="genbutton" onclick="gen_pass();">Gen Pass</button>
+  <label>Password:</label><input type="text" id="pass" />
   </p>
   <p>
-  <label>Password:</label><text id="password"></text>
+  <button id="genbutton" onclick="gen_pass();">Gen Pass</button>
+  <button id="showbutton" onclick="show_pass();">Show Pass</button>
   </p>
+  <p id="info">&nbsp;</p>
 
 </body>
 </html>

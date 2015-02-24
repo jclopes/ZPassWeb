@@ -31,11 +31,3 @@ function hash2pass(salt, keyword, password) {
     var b64 = hash.toString(CryptoJS.enc.Base64);
     return b64.replace(/\+/g, 'Z').replace(/\//g,'z').replace(/=/g,'').substr(0, 16);
 }
-
-function gen_pass() {
-    var salt = document.getElementById('salt');
-    var keyword = document.getElementById('keyword');
-    var uri = document.getElementById('uri');
-    var res = hash2pass(salt.value, keyword.value, uri.value);
-    document.getElementById('password').innerHTML = res;
-}
