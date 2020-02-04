@@ -17,10 +17,21 @@ function gen_pass() {
     var keyword = document.getElementById('keyword');
     var uri = document.getElementById('uri');
     var genPass = hash2pass(salt.value, keyword.value, uri.value);
+    var range = document.createRange();
     var out = document.getElementById('pass');
     out.className = "inv";
     out.value = genPass;
+
+    range.selectNodeContents(out);
+
+    var s = window.getSelection();
+    s.removeAllRanges();
+    s.addRange(range);
+
     out.select();
+
+    document.execCommand('copy');
+
     info = document.getElementById('info');
     info.innerHTML="You may copy to your clipboard: [Ctrl+C] or [CMD+C]";
 }
