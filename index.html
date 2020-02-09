@@ -12,6 +12,13 @@ function show_pass()
     elem.select();
 }
 
+document.addEventListener("keyup", function(event) {
+    if (event.keyCode === 13) {
+        event.preventDefault();
+        document.getElementById("genbutton").click();
+    }
+});
+
 function gen_pass() {
     var salt = document.getElementById('salt');
     var keyword = document.getElementById('keyword');
@@ -35,8 +42,8 @@ function gen_pass() {
     info = document.getElementById('info');
     info.innerHTML="You may copy to your clipboard: [Ctrl+C] or [CMD+C]";
 }
-</script>
-<style>
+  </script>
+  <style>
     .inv::selection {
         color: #000;
         background: #000;
@@ -53,7 +60,7 @@ function gen_pass() {
         color: #000;
         background: #FFF;
     }
-</style>
+  </style>
 </head>
 
 <body>
